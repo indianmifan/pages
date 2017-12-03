@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html style="
-weidth:100%" >
+width:100%" >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,16 +9,36 @@ weidth:100%" >
 <script>
 $(document).ready(function(){
 var a = $(window).width();
-alert(a)
-$(".pig").click(function(){
-var ying="<img src='shitou.png' class='yingle'>";   
+//alert(a)
 
-$(".flash").after(ying);
-$(".flash").remove();
+var shitou="<img src='shitou.png' class='choise'>";   
+var bu="<img src='bu.png' class='choise'>";
+var jiandao="<img src='jiandao.png' class='choise'>";
+
+$("#bu").click(function(){
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(jiandao);
+$(".gif").remove();
 
 
 })
 
+$("#jiandao").click(function(){
+	$("#shitou").remove();
+	$("#bu").remove();
+			$(".gif").after(shitou);
+		$(".gif").remove();
+})
+
+$("#shitou").click(function(){
+	$("#jiandao").remove();
+	$("#bu").remove();
+		$(".gif").after(bu);
+		$(".gif").remove();
+
+
+})
 
 
 
@@ -35,29 +55,61 @@ background-image:url(background.jpg);
 }
 .tou {
 height:100px;
-weidht:100px;}
+width:100px;}
 
-.flash{
-height 80px;
+.gif{
+height:80px;
 width:80px;}
 
-.yingle{
-height 80px;
+.cgif{
+height:80px;
 width:80px;
+}
+.head{
+height:100px;
+width:100px;
+
+}
+.choise{
+height:80px;
+width:80px;
+position:relative;
+margin-top:200px;}
+
+.start{
+	position:relative;
+	width:300px;
+	height:30px;
+	margin-bottom:20px;
+}
+.Choise{
+	position:relative;
+}
+.guodao{
+	height:200;
 }
 </style>
 </head>
-<body style="
-weidth:100%" >
-<div class ="touxiang">
-<img src="touxiang.jpg" alt="touxiang"  class="tou"> 
+<body style="width:100%" >
+<div class ="chead">
+<img src="touxiang.jpg" alt="touxiang"  class="head"> 
 </div>
-<div class=""cflash">
-<img src="shitou.gif" alt="dongtu" class="flash"
+<div class="cgit">
+<img src="shitou.gif" alt="dongtu" class="gif">
 </div>
-<button  class="pig">
 
+
+<div class="Choise">
+<img src="bu.png" id="bu" class="choise">
+<img src="shitou.png" id="shitou" class="choise">
+<img src="jiandao.png" id="jiandao" class="choise">
 </div>
+<div class="guodao">
+<div class="ctou">
+<img src="tou.jpg" class="tou">
+</div>
+
+
 
 
 </body>
