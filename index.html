@@ -4,21 +4,23 @@ width:100%" >
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beijing University of Post and Telecommunications</title>
+<title>八喜陪你玩游戏</title>
 <script src="jquery-1.9.1.min.js"></script>
 <script>
 $(document).ready(function(){
 var a = $(window).width();
 //alert(a)
 
-var shitou="<img src='shitou.png' class='choise'>";   
-var bu="<img src='bu.png' class='choise'>";
-var jiandao="<img src='jiandao.png' class='choise'>";
+var shitou="<img src='shitou.png' class='choisee'>";   
+var bu="<img src='bu.png' class='choisee'>";
+var jiandao="<img src='jiandao.png' class='choisee'>";
+var chaofeng="<p>哎 你输了  只有一次机会  八喜走了 再见</p>"
 
 $("#bu").click(function(){
 $("#shitou").remove();
 $("#jiandao").remove();
 $(".gif").after(jiandao);
+$(".gif").after(chaofeng);
 $(".gif").remove();
 
 
@@ -28,6 +30,7 @@ $("#jiandao").click(function(){
 	$("#shitou").remove();
 	$("#bu").remove();
 			$(".gif").after(shitou);
+			$(".gif").after(chaofeng);
 		$(".gif").remove();
 })
 
@@ -35,6 +38,7 @@ $("#shitou").click(function(){
 	$("#jiandao").remove();
 	$("#bu").remove();
 		$(".gif").after(bu);
+		$(".gif").after(chaofeng); 
 		$(".gif").remove();
 
 
@@ -51,7 +55,7 @@ $("#shitou").click(function(){
 body{
 text-align:center;
 background-image:url(background.jpg);
-    background-repeat:no-repeat;
+    background-\epeat:no-repeat;
 }
 .tou {
 height:100px;
@@ -70,11 +74,17 @@ height:100px;
 width:100px;
 
 }
+.choisee{
+height:80px;
+width:80px;
+position:relative;
+}
+
 .choise{
 height:80px;
 width:80px;
 position:relative;
-margin-top:200px;}
+margin-top:150px;}
 
 .start{
 	position:relative;
