@@ -9,40 +9,41 @@ width:100%" >
 <script>
 $(document).ready(function(){
 var a = $(window).width();
-//alert(a)
+alert(a);
 
-var shitou="<img src='shitou.png' class='choisee'>";   
+var shitou="<img src='shitou.png' class='choisee'>";                //dom对象赋值。
 var bu="<img src='bu.png' class='choisee'>";
 var jiandao="<img src='jiandao.png' class='choisee'>";
 var chaofeng="<p>哎 你输了  只有一次机会  八喜走了 再见</p>"
 
-$("#bu").click(function(){
+$("#bu").click(function(){         //点击布事件
 $("#shitou").remove();
 $("#jiandao").remove();
 $(".gif").after(jiandao);
-$(".gif").after(chaofeng);
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
 $(".gif").remove();
-  $(".choise").css("margin-top","100px");
 
-
+//$(".choise").css("float","left");
+ //$(".choise"). animate({left:"80px"},"9000");
+ 
 })
 
-$("#jiandao").click(function(){
+$("#jiandao").click(function(){        //点击剪刀事件
 	$("#shitou").remove();
 	$("#bu").remove();
 			$(".gif").after(shitou);
-			$(".gif").after(chaofeng);
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
 		$(".gif").remove();
-		  $(".choise").css("margin-top","100px");
+		 // $(".choise").css("margin-top","100px");
 })
 
-$("#shitou").click(function(){
+$("#shitou").click(function(){                //点击石头事件
 	$("#jiandao").remove();
 	$("#bu").remove();
 		$(".gif").after(bu);
-		$(".gif").after(chaofeng); 
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
 		$(".gif").remove();
-		  $(".choise").css("margin-top","100px");
+		//  $(".choise").css("margin-top","100px");
 
 
 })
@@ -50,15 +51,28 @@ $("#shitou").click(function(){
 
 
 })
+
+//$(".big").css("width","a+'px'")
 
 </script>
 <style>
 
 
-body{
+/*body{
 text-align:center;
 background-image:url(background.jpg);
     background-\epeat:no-repeat;
+}*/
+.big{
+text-align:center;
+/*--background-image:url(background.jpg);
+    background-repeat:no-repeat;*/
+      background: url(background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    width:100%;
 }
 .tou {
 height:100px;
@@ -87,7 +101,10 @@ position:relative;
 height:80px;
 width:80px;
 position:relative;
-margin-top:120px;}
+margin-top:80px;}
+.haha{
+	margin: 20px;
+}
 
 .start{
 	position:relative;
@@ -104,13 +121,16 @@ margin-top:120px;}
 </style>
 </head>
 <body style="width:100%" >
+	<div class="big">
 <div class ="chead">
 <img src="touxiang.jpg" alt="touxiang"  class="head"> 
 </div>
 <div class="cgit">
 <img src="shitou.gif" alt="dongtu" class="gif">
 </div>
-
+<div class="haha">
+	<p id="hahaha">&nbsp <br></p>
+</div>
 
 <div class="Choise">
 <img src="bu.png" id="bu" class="choise">
@@ -123,7 +143,7 @@ margin-top:120px;}
 </div>
 
 
-
+</div>
 
 </body>
 
