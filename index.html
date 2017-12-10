@@ -7,28 +7,99 @@
 <script src="jquery-1.9.1.min.js"></script>
 <script>
 $(document).ready(function(){
+	$(".ppp").hide();
 var a = $(window).width();
-alert(a);
+//alert(a);
 var b = $(window).height();
-alert(b);
+//alert(b);
 var shitou="<img src='shitou.png' class='choisee'>";                //dom对象赋值。
 var bu="<img src='bu.png' class='choisee'>";
 var jiandao="<img src='jiandao.png' class='choisee'>";
 var chaofeng="<p>哎 你输了  只有一次机会  八喜走了 再见</p>"
 
-$("#bu").click(function(){         //点击布事件
+$("#bu").click(function(){        //点击布事件
+     var q=	Math.random()*10;
+     if (q>=3 &&q<=6)
+     	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6)
+	 	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 竟然输了");
+$(".ppp").show(6000);
+$(".gif").remove();}
+else if(q<3)
+	 	{alert(q);
 $("#shitou").remove();
 $("#jiandao").remove();
 $(".gif").after(jiandao);
-$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
-$(".gif").remove();
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}
 
 //$(".choise").css("float","left");
  //$(".choise"). animate({left:"80px"},"9000");
  
 })
 
-$("#jiandao").click(function(){        //点击剪刀事件
+
+$("#shitou").click(function(){        //点击布事件
+     var q=	Math.random()*10;
+     if (q>=3 &&q<=6)
+     	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6)
+	 	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 竟然输了");
+$(".gif").remove();}
+else if(q<3)
+	 	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}})
+
+
+$("#jiandao").click(function(){        //点击布事件
+     var q=	Math.random()*10;
+     if (q>=3 &&q<=6)
+     	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6)
+	 	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 竟然输了");
+$(".gif").remove();}
+else if(q<3)
+	 	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}
+})
+
+
+/*$("#jiandao").click(function(){        //点击剪刀事件
 	$("#shitou").remove();
 	$("#bu").remove();
 			$(".gif").after(shitou);
@@ -46,7 +117,7 @@ $("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
 		//  $(".choise").css("margin-top","100px");
 
 
-})
+})*/
 
 
 
@@ -117,12 +188,21 @@ margin-top:135px;}
 	position:relative;
 }
 .guodao{
-	height:200;
+	height:200px;
+}
+
+.ppp{
+	float: right;
+	width:70px;
+	height:80px;
 }
 </style>
 </head>
 <body style="height: 99%" >
+
 	<div class="big" style="height: 99%">
+		<img src="ppp.png" alt="dongtu" class="ppp">
+
 <div class ="chead">
 <img src="touxiang.jpg" alt="touxiang"  class="head"> 
 </div>
