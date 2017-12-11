@@ -16,8 +16,12 @@ var shitou="<img src='shitou.png' class='choisee'>";                //dom对象�
 var bu="<img src='bu.png' class='choisee'>";
 var jiandao="<img src='jiandao.png' class='choisee'>";
 var chaofeng="<p>哎 你输了  只有一次机会  八喜走了 再见</p>"
+var stop=0; 
+$("#bu").click(function(){  	//点击布事件
 
-$("#bu").click(function(){        //点击布事件
+
+while (stop==0) {  
+	stop=1;
      var q=	Math.random()*10;
      if (q>=3.333333 &&q<=6.66666)
      	{alert(q);
@@ -45,10 +49,12 @@ $(".gif").remove();}
 //$(".choise").css("float","left");
  //$(".choise"). animate({left:"80px"},"9000");
  
-})
+}})
 
 
-$("#shitou").click(function(){        //点击布事件
+$("#shitou").click(function(){        //点击石头事件
+	while (stop==0) {  
+	stop=1;
      var q=	Math.random()*10;
      if (q>=3.3333333 &&q<=6.6666666)
      	{alert(q);
@@ -70,10 +76,12 @@ $("#bu").remove();
 $("#jiandao").remove();
 $(".gif").after(bu);
 $("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
-$(".gif").remove();}})
+$(".gif").remove();}}})
 
 
-$("#jiandao").click(function(){        //点击布事件
+$("#jiandao").click(function(){        //点击剪刀事件
+	while (stop==0) {  
+	stop=1;
      var q=	Math.random()*10;
      if (q>=3.333333333333 &&q<=6.6666666666)
      	{alert(q);
@@ -96,7 +104,8 @@ $("#bu").remove();
 $(".gif").after(shitou);
 $("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
 $(".gif").remove();}
-})
+}})
+
 
 
 /*$("#jiandao").click(function(){        //点击剪刀事件
