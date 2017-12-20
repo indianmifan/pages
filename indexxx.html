@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html style="height: 99%">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八喜陪你玩游戏</title>
+<script src="jquery-1.9.1.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+  /**
+ * Created with JetBrains PhpStorm.
+ * Desc: OneNet JS SDK 使用高风险，仅限实验用
+ * Author: limengjun
+ * Date: 16-2-26
+ * Time: 下午2:27
+ * Version: 1.0.0
+ * Copyright (c) 2016 中国移动物联网有限公司
+ * Under MIT License (http://www.opensource.org/licenses/mit-license.php)
+ */
+
+(function(){
+    var count = 1;
+    var API_HOST = 'http://open.iot.10086.cn';
+    function noop(){}
+    function jsonp(url, opts, fn){
+        if ('function' == typeof opts) {
+            fn = opts;
+            opts = {};
+        }
+        if (!opts) opts = {};
+
+        var prefix = opts.prefix || 'callback';
+
+        // use the callback name that was passed if one was provided.
+        // otherwise generate a unique name by incrementing our counter.
+        var id = opts.name || (prefix + (count++));
+
+        var param = opts.param || 'callback';
+        var timeout = null != opts.timeout ? opts.timeout : 60000;
+        var enc = encodeURIComponent;
+        var target = document.getElementsByTagName('script')[0] || document.head;
+        var script;
+        var timer;
+
+
+        if (timeout) {
+            timer = setTimeout(function(){
+                cleanup();
+                if (fn) fn(new Error('Timeout'));
+            }, timeout);
+        }
+
+        function cleanup(){
+            if (script.parentNode) script.parentNode.removeChild(script);
+            window[id] = noop;
+            if (timer) clearTimeout(timer);
+        }
+
+        function cancel(){
+            if (window[id]) {
+                cleanup();
+            }
+        }
+
+        window[id] = function(data){
+            cleanup();
+            if (fn) fn(null, data);
+        };
+
+        // add qs component
+        url += (~url.indexOf('?') ? '&' : '?') + param + '=' + enc(id) + '&_=' + (new Date()).getTime();
+        url = url.replace('?&', '?');
+
+        // create script
+        script = document.createElement('script');
+        script.src = url;
+        target.parentNode.insertBefore(script, target);
+
+        return cancel;
+    }
+
+    function OneNetApi(apiKey){
+        if(!apiKey){
+            alert('初始化OneNetApi时必须传入apiKey！');
+        }
+        this._apiKey = encodeURIComponent(apiKey);
+    }
+
+    OneNetApi.prototype = {
+        /**
+         * 读取设备多个数据流
+         * */
+        getDataStreams: function(deviceId){
+            var doneCallBack;
+            jsonp(API_HOST + '/api/jsonpresend?key='+this._apiKey+'&method=GET&uri=devices/'+deviceId+'/datastreams', function(error, res){
+                if(error || !res.hasOwnProperty('data')){
+                    res = {
+                        errno: 100,
+                        error: 'timeout'
+                    };
+                }
+
+                doneCallBack && doneCallBack(res);
+            });
+            return {
+                done: function(func){
+                    doneCallBack = func;
+                }
+            }
+        },
+        /**
+         * 获取数据点 cmds
+         * */
+        getDataPoints: function(deviceId, parameter){
+            var doneCallBack;
+            var uri = 'devices/'+deviceId+'/datapoints';
+            var uriComponent = '';
+            if(parameter){
+                for(var i in parameter){
+                    if(uriComponent){
+                        uriComponent += encodeURIComponent('&');
+                    }
+                    uriComponent += i + '=' + encodeURIComponent(parameter[i]);
+                }
+                uri += encodeURIComponent('?') + uriComponent;
+            }
+            jsonp(API_HOST + '/api/jsonpresend?key=' + this._apiKey + '&method=GET&uri=' + uri, function(error, res){
+                if(error || !res.hasOwnProperty('data')){
+                    res = {
+                        errno: 100,
+                        error: 'timeout'
+                    };
+                }
+
+                doneCallBack && doneCallBack(res);
+            });
+            return {
+                done: function(func){
+                    doneCallBack = func;
+                }
+            }
+        },
+        /**
+         * 发送命令 /api/jsonpresend?callback=callback1&_=1&uri=cmds&method=cmds&key={APIkey}&device_id={设备ID}&sms={要发的指令
+         * */
+        sendCommand: function(deviceId, command){
+            var doneCallBack;
+            jsonp(API_HOST + '/api/jsonpresend?key=' + this._apiKey + '&method=cmds&uri=cmds&device_id=' + deviceId + '&sms=' + encodeURIComponent(command), function(error, res){
+                if(error || !res.hasOwnProperty('errno')){
+                    res = {
+                        errno: 100,
+                        error: 'timeout'
+                    };
+                }
+
+                doneCallBack && doneCallBack(res);
+            });
+            return {
+                done: function(func){
+                    doneCallBack = func;
+                }
+            }
+        }
+    };
+
+    window.OneNetApi = OneNetApi;
+
+})();
+
+
+
+	$(".ppp").hide();
+var a = $(window).width();
+//alert(a);
+var b = $(window).height();
+//alert(b);
+var shitou="<img src='shitou.png' class='choisee'>";                //dom对象赋值。
+var bu="<img src='bu.png' class='choisee'>";
+var jiandao="<img src='jiandao.png' class='choisee'>";
+var chaofeng="<p>哎 你输了  只有一次机会  八喜走了 再见</p>"
+var stop=0; 
+$("#bu").click(function(){  	//点击布事件
+
+
+while (stop==0) {  
+	stop=1;
+     var q=	Math.random()*10;
+     if (q>=3.333333 &&q<=6.66666)
+     	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6.6666666)
+	 	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 竟然输了");
+$(".ppp").show(60);
+$(".gif").remove();}
+else if(q<3.3333333)
+	 	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}
+
+//$(".choise").css("float","left");
+ //$(".choise"). animate({left:"80px"},"9000");
+ 
+}})
+
+
+$("#shitou").click(function(){        //点击石头事件
+	while (stop==0) {  
+	stop=1;
+     var q=	Math.random()*10;
+     if (q>=3.3333333 &&q<=6.6666666)
+     	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6.666666666)
+	 	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 竟然输了");
+$(".gif").remove();}
+else if(q<3.333333333)
+	 	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}}})
+
+
+$("#jiandao").click(function(){        //点击剪刀事件
+	while (stop==0) {  
+	stop=1;
+     var q=	Math.random()*10;
+     if (q>=3.333333333333 &&q<=6.6666666666)
+     	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6.666666666666)
+	 	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 竟然输了");
+$(".gif").remove();}
+else if(q<3.333333333333)
+	 	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}
+}})
+
+
+
+/*$("#jiandao").click(function(){        //点击剪刀事件
+	$("#shitou").remove();
+	$("#bu").remove();
+			$(".gif").after(shitou);
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
+		$(".gif").remove();
+		 // $(".choise").css("margin-top","100px");
+})
+
+$("#shitou").click(function(){                //点击石头事件
+	$("#jiandao").remove();
+	$("#bu").remove();
+		$(".gif").after(bu);
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
+		$(".gif").remove();
+		//  $(".choise").css("margin-top","100px");
+
+
+})*/
+
+
+
+})
+
+//$(".big").css("width","a+'px'")
+
+</script>
+<style>
+
+/*body{
+text-align:center;
+background-image:url(background.jpg);
+    background-\epeat:no-repeat;
+}*/
+.big{
+text-align:center;
+/*--background-image:url(background.jpg);
+    background-repeat:no-repeat;*/
+      background: url(background.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+    width:100%;
+}
+.tou {
+height:100px;
+width:100px;}
+.gif{
+height:80px;
+width:80px;}
+.cgif{
+height:80px;
+width:80px;
+}
+.head{
+height:100px;
+width:100px;
+margin-top:8px;
+}
+.choisee{
+height:80px;
+width:80px;
+position:relative;
+}
+.choise{
+height:80px;
+width:80px;
+position:relative;
+margin-top:135px;}
+.haha{
+	margin: 20px;
+}
+.start{
+	position:relative;
+	width:300px;
+	height:30px;
+	margin-bottom:20px;
+}
+.Choise{
+	position:relative;
+}
+.guodao{
+	height:200;
+}
+
+</style>
+</head>
+<body style="height: 99%" >
+	
+	<!--<img src="ppp.png" alt="dongtu" class="ppp">-->
+	<div class="big" style="height: 99%">
+
+<div class ="chead">
+<img src="touxiang.jpg" alt="touxiang"  class="head"> 
+</div>
+<div class="cgit">
+<img src="shitou.gif" alt="dongtu" class="gif">
+</div>
+<div class="haha">
+	<p id="hahaha">&nbsp <br></p>
+</div>
+
+<div class="Choise">
+<img src="bu.png" id="bu" class="choise">
+<img src="shitou.png" id="shitou" class="choise">
+<img src="jiandao.png" id="jiandao" class="choise">
+</div>
+<div class="guodao">
+<div class="ctou">
+<img src="tou.jpg" class="tou">
+</div>
+
+
+</div>
+
+</body>
+
+
+</html>
