@@ -3,53 +3,136 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>智能狗窝</title>
+<title>八喜陪你玩游戏</title>
 <script src="jquery-1.9.1.min.js"></script>
-
 <script>
-
 $(document).ready(function(){
-d=new Date();
-var a=d.getHours() ;
-var b=d.getMinutes();
-var c=d.getSeconds();
+	$(".ppp").hide();
+var a = $(window).width();
+//alert(a);
+var b = $(window).height();
+//alert(b);
+var shitou="<img src='shitou.png' class='choisee'>";                //dom对象赋值。
+var bu="<img src='bu.png' class='choisee'>";
+var jiandao="<img src='jiandao.png' class='choisee'>";
+var chaofeng="<p>哎 你输了  只有一次机会  八喜走了 再见</p>"
+var stop=0; 
+$("#bu").click(function(){  	//点击布事件
+
+
+while (stop==0) {  
+	stop=1;
+     var q=	Math.random()*10;
+     if (q>=3.333333 &&q<=6.66666)
+     	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6.6666666)
+	 	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 竟然输了");
+$(".ppp").show(60);
+$(".gif").remove();}
+else if(q<3.3333333)
+	 	{alert(q);
+$("#shitou").remove();
+$("#jiandao").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}
+
+//$(".choise").css("float","left");
+ //$(".choise"). animate({left:"80px"},"9000");
+ 
+}})
+
+
+$("#shitou").click(function(){        //点击石头事件
+	while (stop==0) {  
+	stop=1;
+     var q=	Math.random()*10;
+     if (q>=3.3333333 &&q<=6.6666666)
+     	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6.666666666)
+	 	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 竟然输了");
+$(".gif").remove();}
+else if(q<3.333333333)
+	 	{alert(q);
+$("#bu").remove();
+$("#jiandao").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}}})
+
+
+$("#jiandao").click(function(){        //点击剪刀事件
+	while (stop==0) {  
+	stop=1;
+     var q=	Math.random()*10;
+     if (q>=3.333333333333 &&q<=6.6666666666)
+     	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(jiandao);
+$("#hahaha").html("哎 竟然平了");
+$(".gif").remove();}
+else if(q<=10&&q>6.666666666666)
+	 	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(bu);
+$("#hahaha").html("哎 竟然输了");
+$(".gif").remove();}
+else if(q<3.333333333333)
+	 	{alert(q);
+$("#shitou").remove();
+$("#bu").remove();
+$(".gif").after(shitou);
+$("#hahaha").html("哎 你输了  只有一次机会  八喜走了 再见");
+$(".gif").remove();}
+}})
 
 
 
- if(a>=7&&a<12){
-     alert("狗狗的早饭已经投出，下一次投食时间是中午十二点")
-}
-else if(a>=12&&a<19){
-     alert("晚上七点狗狗开饭，上一次投食时间是中午十二点")
-}
-else if(a>=19||a<7){
-    alert("今天三餐都已投食完毕，等明早七点狗狗才能吃早饭")
-}
-function current(){ 
-    d=new Date();
-str=''; 
-str +=d.getFullYear()+'年'; //获取当前年份 
-str +=d.getMonth()+1+'月'; //获取当前月份（0——11） 
-str +=d.getDate()+'日'; 
-str +=d.getHours()+'时'; 
-str +=d.getMinutes()+'分'; 
-str +=d.getSeconds()+'秒'; 
-return str; 
-//if(d.getHours()==20||d.getMinutes()==59||d.getSeconds()==20)
+/*$("#jiandao").click(function(){        //点击剪刀事件
+	$("#shitou").remove();
+	$("#bu").remove();
+			$(".gif").after(shitou);
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
+		$(".gif").remove();
+		 // $(".choise").css("margin-top","100px");
+})
 
-} 
-setInterval(function(){$("#nowTime").html(current);
-    var d=new Date();
-var a=d.getHours() ;
-var b=d.getMinutes();
-var c=d.getSeconds();if((a==12&&b==0&&c==0)||(a==7&&b==0&&c==0)||(a==19&&b==0&&c==0)){ alert("狗狗的吃饭时间到了，已自动投食")}},1000); 
+$("#shitou").click(function(){                //点击石头事件
+	$("#jiandao").remove();
+	$("#bu").remove();
+		$(".gif").after(bu);
+$("#hahaha").html("哎 你输了 只有一次机会 八喜走了 再见");
+		$(".gif").remove();
+		//  $(".choise").css("margin-top","100px");
+
+
+})*/
 
 
 
 })
-var app= res.data.data.datastreams[0];
-alert(app)
-</script> 
+
+//$(".big").css("width","a+'px'")
 
 </script>
 <style>
@@ -114,21 +197,28 @@ margin-top:135px;}
 </style>
 </head>
 <body style="height: 99%" >
- 
 	
 	<!--<img src="ppp.png" alt="dongtu" class="ppp">-->
 	<div class="big" style="height: 99%">
-    <div id="nowTime"></div> 
+
+<div class ="chead">
+<img src="touxiang.jpg" alt="touxiang"  class="head"> 
 </div>
+<div class="cgit">
+<img src="shitou.gif" alt="dongtu" class="gif">
 </div>
 <div class="haha">
 	<p id="hahaha">&nbsp <br></p>
 </div>
 
 <div class="Choise">
+<img src="bu.png" id="bu" class="choise">
+<img src="shitou.png" id="shitou" class="choise">
+<img src="jiandao.png" id="jiandao" class="choise">
 </div>
 <div class="guodao">
-
+<div class="ctou">
+<img src="tou.jpg" class="tou">
 </div>
 
 
