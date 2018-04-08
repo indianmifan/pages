@@ -8,9 +8,10 @@
 <title>八喜陪你玩游戏</title>
 <script src="jquery-1.9.1.min.js"></script>
 <script>
+	var a=900;
 $(document).ready(function(){
 	$(".ppp").hide();
-var a = $(window).width();
+ a = $(window).width();
 //alert(a);
 var b = $(".big").height();        
 //$(".top").css({"height":"b+'px'","font-size":"200%"});
@@ -283,6 +284,19 @@ position:relative;
 
 
 </div>
+<script type="text/javascript">
+		//$(".toutie").click(function(){window.location.reload();})
+$(".big").on("click",".toutie",function(){
+	        a=a+1;
+alert(a);
+a=a+1;
+alert(a);
+
+        parent.location.reload();
+        //console(a);
+  });
+   
+</script>
 
 </body>
 
